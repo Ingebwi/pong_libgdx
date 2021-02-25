@@ -59,7 +59,6 @@ public class PlayState implements State{
 
         if (ball.collides(paddle_l.getRectangle()) || ball.collides(paddle_r.getRectangle())){
             ball.changeDirection();
-
             //TODO: implement a method to keep track of number of hits
             //Paddle_Counter +=1;
 
@@ -84,6 +83,7 @@ public class PlayState implements State{
     @Override
     public void update(float dt) {
         handleInput();
+
         int point = ball.move(dt);
         if (point != 0){
             if (point > 0){
@@ -94,11 +94,9 @@ public class PlayState implements State{
             }
         }
 
-
         if (pr_score >= max_score || pl_score >= max_score){
             gsm.set(new EndState());
         }
-
     }
 
     @Override
