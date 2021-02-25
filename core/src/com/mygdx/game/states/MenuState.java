@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.Pong;
 
-import java.awt.Button;
 
 public class MenuState implements State{
     Texture field;
@@ -22,7 +21,6 @@ public class MenuState implements State{
     public MenuState() {
         field = new Texture("field.png");
         playBtn = new Texture("playbtn.png");
-
     }
 
     @Override

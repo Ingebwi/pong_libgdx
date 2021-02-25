@@ -27,6 +27,10 @@ public class Ball {
     int height = 20;
     int width = 20;
 
+
+
+
+
     private Ball(int x, int y){
         position = new Vector3(x, y, 0);
         velocity = new Vector3(150 ,100, 0);
@@ -35,9 +39,7 @@ public class Ball {
     }
 
 
-    //TODO: Make ball go in direction of player that did not score
     //TODO: Make ball go faster after some time --> 6 hits and it speeds up.
-    //QUESTION: Should this method be void? Perhaps not...
     public int move(float dt){
         int score = 0;
         if (position.y < minY || position.y + height > maxY) {
@@ -52,7 +54,6 @@ public class Ball {
             }
             velocity.x = - velocity.x;
             position = new Vector3(Pong.WIDTH /2 - 10, Pong.HEIGHT / 2, 0);
-
 
         }
         velocity.scl(dt);
@@ -71,6 +72,14 @@ public class Ball {
 
         return texture;
     }
+
+    //double  speed after some hits with the paddles
+    public void increaseVelocity(){
+        velocity.x = 2*velocity.x;
+        velocity.y = 2*velocity.y;
+
+    }
+
 
     public Vector3 getPosition() {
         return position;
@@ -111,11 +120,13 @@ public class Ball {
 //    }
 
 
-
+//Method for starting after pause
     public void startPosition(){
         position = new Vector3(Pong.WIDTH /2 - 10, Pong.HEIGHT / 2, 0);
 
     }
+
+
 
 
 }

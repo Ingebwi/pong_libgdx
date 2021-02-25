@@ -13,7 +13,6 @@ public class EndState implements State{
 
 
 
-
     protected EndState() {
         field = new Texture("field.png");
 

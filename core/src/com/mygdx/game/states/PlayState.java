@@ -24,7 +24,8 @@ public class PlayState implements State{
     private int pl_score = 0;
     private int pr_score = 0;
     private int max_score = 3;
-    private boolean pause = false;
+
+    private int Paddle_Counter = 0;
 
     protected PlayState(){
         ball = Ball.getInstance();
@@ -35,7 +36,6 @@ public class PlayState implements State{
         font.getData().scale(1);
 
     }
-
 
 
     @Override
@@ -59,7 +59,15 @@ public class PlayState implements State{
 
         if (ball.collides(paddle_l.getRectangle()) || ball.collides(paddle_r.getRectangle())){
             ball.changeDirection();
+
+            //TODO: implement a method to keep track of number of hits
+            //Paddle_Counter +=1;
+
         }
+
+
+         //TODO: implement a pause-state.
+        //Comment: Right now it wont pause properly. the .freeze() will just crash the rendering, and the ball dissappears.
 
 //        if(pause = false && Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
 //            pause = true;
@@ -76,9 +84,9 @@ public class PlayState implements State{
     @Override
     public void update(float dt) {
         handleInput();
-        int score = ball.move(dt);
-        if (score != 0){
-            if (score > 0){
+        int point = ball.move(dt);
+        if (point != 0){
+            if (point > 0){
                 pr_score ++;
             }
             else{
@@ -86,10 +94,10 @@ public class PlayState implements State{
             }
         }
 
+
         if (pr_score >= max_score || pl_score >= max_score){
             gsm.set(new EndState());
         }
-
 
     }
 
@@ -112,5 +120,12 @@ public class PlayState implements State{
     public void dispose() {
 
     }
+
+
+//    public boolean checkPaddleCounter(){
+//        return Paddle_Counter >= 5;
+//    }
+
+
 
 }
